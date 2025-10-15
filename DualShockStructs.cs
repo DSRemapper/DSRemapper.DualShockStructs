@@ -1,8 +1,6 @@
 ﻿using DSRemapper.Core.Types;
-using System.Collections.Specialized;
-using System.Numerics;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+using DSRemapper.DualCommon;
 
 namespace DSRemapper.DualShock
 {
@@ -167,32 +165,6 @@ namespace DSRemapper.DualShock
 
         public ExtendedInState() { }
 
-    }
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct FingerStatus
-    {
-        private BitVector<uint> fingerData = new();
-
-        private static readonly BitVector<uint>.Section fingerId = BitVector<uint>.CreateSection(0x7F);
-        private static readonly BitVector<uint>.Section fingerX = BitVector<uint>.CreateSection(0xFFF, 8);
-        private static readonly BitVector<uint>.Section fingerY = BitVector<uint>.CreateSection(0xFFF, fingerX);
-
-        public byte FingerId { get => (byte)fingerData[fingerId]; set => fingerData[fingerId] = value; }
-        public bool FingerTouch { get => !fingerData[0x80]; set => fingerData[0x80] = !value; }
-        public short FingerX { get => (short)fingerData[fingerX]; set => fingerData[fingerX] = (uint)value; }
-        public short FingerY { get => (short)fingerData[fingerY]; set => fingerData[fingerY] = (uint)value; }
-        public FingerStatus() { }
-    }
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct TouchStatus
-    {
-        private byte timestamp = 0;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
-        private FingerStatus[] fingers = new FingerStatus[2];
-
-        public byte Timestamp { get => timestamp; set => timestamp = value; }
-        public FingerStatus[] Fingers { get => fingers; set => fingers = value; }
-        public TouchStatus() { }
     }
 
     #endregion Input
