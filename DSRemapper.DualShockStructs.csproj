@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DSRemapper.Core" Version="0.4.1-beta" />
+    <PackageReference Include="DSRemapper.Core" Version="0.4.3-beta" />
   </ItemGroup>
 
 </Project>
