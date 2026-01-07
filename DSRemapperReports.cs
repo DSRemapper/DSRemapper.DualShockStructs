@@ -33,7 +33,6 @@ namespace DSRemapper.DualShock
         public DSRVector3 Accel { get { return SixAxes[3]; } set { SixAxes[3] = value; } }
         public DSRQuaternion DeltaRotation { get { return Quaternions[0]; } set { Quaternions[0] = value; } }
         public DSRQuaternion Rotation { get { return Quaternions[1]; } set { Quaternions[1] = value; } }
-        public DualShockInputReport() : this(new()) { }
         public DualShockInputReport(IDS4InReport raw)
         {
             Set(raw);
@@ -155,10 +154,10 @@ namespace DSRemapper.DualShock
         public float[] ExtLeds { get => []; set => _ = value; }
         public IDSRFeedback[] Feedbacks { get => []; set => _ = value; }
 
-        public DualShockOutputReport() : this(new())
+        /*public DualShockOutputReport() : this(new USBOutReport())
         {
             Led.SetRGB(0, 0, 1, 0.125f);
-        }
+        }*/
         public DualShockOutputReport(IDS4OutReport raw)
         {
             Set(raw);
